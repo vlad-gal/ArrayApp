@@ -1,4 +1,4 @@
-package by.halatsevich.array.task1.exception;
+package by.halatsevich.array.exception;
 
 /**
  * Custom exception

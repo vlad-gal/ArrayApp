@@ -1,10 +1,10 @@
-package by.halatsevich.array.task2.entity;
+package by.halatsevich.jaggedarray.entity;
 
 /**
  * Enumeration with type of sorting
  *
  * @author Vladislav Halatsevich
  */
-public enum Sort {
+public enum TypeSort {
     DESCENDING, ASCENDING
 }

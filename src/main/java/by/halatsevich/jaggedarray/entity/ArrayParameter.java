@@ -1,6 +1,4 @@
-package by.halatsevich.array.task2.entity;
-
-import java.util.Arrays;
+package by.halatsevich.jaggedarray.entity;
 
 /**
  * Transfer object to jagged array with parameters
@@ -48,7 +46,12 @@ public class ArrayParameter {
         if (parameter.arrayParameter != arrayParameter) {
             return false;
         }
-        return Arrays.equals(array, parameter.array);
+        for (int i = 0; i < array.length; i++) {
+            if (parameter.array[i] != array[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -56,12 +59,28 @@ public class ArrayParameter {
         int prime = 31;
         int result = 1;
         result = prime * result + arrayParameter;
-        result = prime * result + Arrays.hashCode(array);
+        for (int i = 0; i < array.length; i++) {
+            result = prime * result + array[i];
+        }
         return result;
     }
 
     @Override
     public String toString() {
-        return String.format("ArrayParameter {parameter = %d, elements = %s}", arrayParameter, Arrays.toString(array));
+        int lastIndex = array.length - 1;
+        StringBuilder arrayToString = new StringBuilder();
+        arrayToString.append('[');
+        if (array.length == 0) {
+            arrayToString.append(']');
+        }
+        for (int i = 0; i < array.length; i++) {
+            arrayToString.append(array[i]);
+            if (i == lastIndex) {
+                arrayToString.append(']');
+                continue;
+            }
+            arrayToString.append(", ");
+        }
+        return String.format("ArrayParameter {parameter = %d, elements = %s}", arrayParameter, arrayToString);
     }
 }

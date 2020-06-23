@@ -1,7 +1,7 @@
-package by.halatsevich.array.task1.service;
+package by.halatsevich.array.service;
 
-import by.halatsevich.array.task1.entity.CustomArray;
-import by.halatsevich.array.task1.exception.InputDataException;
+import by.halatsevich.array.entity.CustomArray;
+import by.halatsevich.array.exception.InputDataException;
 
 /**
  * Service provides various search methods
@@ -13,16 +13,17 @@ public class SearchService {
     /**
      * Binary search wrapper
      *
-     * @param array the array to be searched
+     * @param array the array to be searched, it should be sorted
      * @param key   the value to be searched for
      * @return index of the search key, if it is contained in the array or -(1+leftBound) if it is not contained
-     * @throws InputDataException if index of element outside the array bounds
+     * @throws InputDataException if index of element outside the array bounds or array is not sorted
      */
     public int binarySearch(CustomArray array, int key) throws InputDataException {
-        SortService service = new SortService();
-        CustomArray sortedArray = service.insertSort(array);
-        checkRange(sortedArray.getSize(), 0, sortedArray.getSize());
-        return binarySearchRecursion(sortedArray, 0, sortedArray.getSize(), key);
+        if (!isSorted(array)) {
+            throw new InputDataException("Array is not sorted");
+        }
+        checkRange(array.getSize(), 0, array.getSize());
+        return binarySearchRecursion(array, 0, array.getSize(), key);
     }
 
     /**
@@ -51,7 +52,7 @@ public class SearchService {
     }
 
     /**
-     * Check range in array to binary search
+     * Check range in array for binary search
      *
      * @param arraySize arrays size
      * @param left      left index of bound
@@ -68,6 +69,23 @@ public class SearchService {
         if (right > arraySize) {
             throw new InputDataException("right index > array size");
         }
+    }
+
+    /**
+     * Check if array sorted for binary search
+     *
+     * @param array the array to be checked
+     * @return true if array sorted, false if not
+     * @throws InputDataException if index of element outside the array bounds
+     */
+    private boolean isSorted(CustomArray array) throws InputDataException {
+        boolean condition = array.getElement(0) - array.getElement(1) > 0;
+        for (int i = 0; i < array.getSize() - 1; i++) {
+            if ((array.getElement(i) - array.getElement(i + 1) > 0) != condition) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -144,6 +162,9 @@ public class SearchService {
      * @return true if number is simple, false if is not
      */
     private boolean isSimpleNumber(int number) {
+        if (number < 0) {
+            return false;
+        }
         boolean result = true;
         for (int j = 2; j <= Math.sqrt(number); j++) {
             if (number % j == 0) {

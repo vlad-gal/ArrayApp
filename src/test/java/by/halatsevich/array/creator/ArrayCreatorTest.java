@@ -1,22 +1,20 @@
-package by.halatsevich.array.task1.creator;
+package by.halatsevich.array.creator;
 
-import by.halatsevich.array.task1.entity.CustomArray;
-import by.halatsevich.array.task1.exception.InputDataException;
+import by.halatsevich.array.entity.CustomArray;
+import by.halatsevich.array.exception.InputDataException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static org.testng.Assert.*;
 
 public class ArrayCreatorTest {
     ArrayCreator creator;
-    List<Integer> dataToArrays = Arrays.asList(4, 2, 13, 5, 7);
+    int[] dataToArrays;
 
     @BeforeClass
     public void setUp() {
         creator = new ArrayCreator();
+        dataToArrays = new int[]{2, 13, 5, 7};
     }
 
     @Test
@@ -43,14 +41,8 @@ public class ArrayCreatorTest {
 
     @Test(expectedExceptions = InputDataException.class,
             expectedExceptionsMessageRegExp = "Data to create array are null")
-    public void testCreateArrayNullDataExceptionMessage() throws InputDataException {
+    public void testCreateArrayExceptionMessage() throws InputDataException {
         creator.createArray(null);
-    }
-
-    @Test(expectedExceptions = InputDataException.class,
-            expectedExceptionsMessageRegExp = "Size of array is less then 0")
-    public void testCreateArraySizeExceptionMessage() throws InputDataException {
-        creator.createArray(Arrays.asList(-48, 5132, 8));
     }
 
     @Test
@@ -110,5 +102,4 @@ public class ArrayCreatorTest {
     public void testCreateRandomArraySizeExceptionMessage() throws InputDataException {
         creator.createRandomArray(-46, 55);
     }
-
 }
