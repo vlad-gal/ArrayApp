@@ -8,18 +8,17 @@ import by.halatsevich.array.exception.InputDataException;
  * @author Vladislav Halatsevich
  */
 public class CustomArray {
-    private static final int DEFAULT_CAPACITY = 16;
     private int[] array;
 
     public CustomArray(int[] array) {
         this.array = array;
     }
 
-    public CustomArray(int capacity) {
+    public CustomArray(int capacity) throws InputDataException {
         if (capacity >= 0) {
             array = new int[capacity];
         } else {
-            array = new int[DEFAULT_CAPACITY];
+            throw new InputDataException("Array capacity is less than 0");
         }
     }
 
