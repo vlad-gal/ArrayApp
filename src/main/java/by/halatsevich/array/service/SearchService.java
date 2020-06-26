@@ -96,7 +96,7 @@ public class SearchService {
      * @throws InputDataException if index of element outside the array bounds
      */
     public int findMinElement(CustomArray array) throws InputDataException {
-        int min = Integer.MAX_VALUE;
+        int min = array.getElement(0);
         for (int i = 0; i < array.getSize(); i++) {
             if (min > array.getElement(i)) {
                 min = array.getElement(i);
@@ -113,7 +113,7 @@ public class SearchService {
      * @throws InputDataException if index of element outside the array bounds
      */
     public int findMaxElement(CustomArray array) throws InputDataException {
-        int max = Integer.MIN_VALUE;
+        int max = array.getElement(0);
         for (int i = 0; i < array.getSize(); i++) {
             if (max < array.getElement(i)) {
                 max = array.getElement(i);
