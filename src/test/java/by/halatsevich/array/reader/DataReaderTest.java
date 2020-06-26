@@ -12,7 +12,7 @@ import static org.testng.Assert.*;
 
 public class DataReaderTest {
     DataReader reader;
-    static final String TEST_FILE = "src/main/resources/data/input.txt";
+    static final String TEST_FILE = "resources/data/input.txt";
 
     @BeforeClass
     public void setUp() {

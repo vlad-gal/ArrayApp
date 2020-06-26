@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class DataReader {
     private static final InputStream DEFAULT_INPUT = System.in;
-    private static final String DEFAULT_PATH = "src/main/resources/data/input.txt";
+    private static final String DEFAULT_PATH = "resources/data/input.txt";
 
     /**
      * Read all data from file
