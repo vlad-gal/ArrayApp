@@ -92,7 +92,7 @@ public class JaggedArraySortService {
     private ArrayParameter[] maxValueInRow(int[][] array) {
         ArrayParameter[] maxValueInRow = new ArrayParameter[array.length];
         for (int i = 0; i < array.length; i++) {
-            int max = Integer.MIN_VALUE;
+            int max = array[i][0];
             for (int j = 0; j < array[i].length; j++) {
                 if (max < array[i][j]) {
                     max = array[i][j];
@@ -112,7 +112,7 @@ public class JaggedArraySortService {
     private ArrayParameter[] minValueInRow(int[][] array) {
         ArrayParameter[] minValueInRow = new ArrayParameter[array.length];
         for (int i = 0; i < array.length; i++) {
-            int min = Integer.MAX_VALUE;
+            int min = array[i][0];
             for (int j = 0; j < array[i].length; j++) {
                 if (min > array[i][j]) {
                     min = array[i][j];
